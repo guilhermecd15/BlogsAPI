@@ -1,4 +1,3 @@
-// controllers/login.js
 const Joi = require('joi');
 
 const validateBody = (body) =>

@@ -14,3 +14,4 @@ app.get('/', (request, response) => {
 });
 
 app.post('/user', routes.isValid, routes.createUsers);
+app.post('/login', routes.login);
