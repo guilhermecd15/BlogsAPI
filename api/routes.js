@@ -1,9 +1,11 @@
 const createUsers = require('../controllers/createUser');
 const login = require('../controllers/login');
+const getUser = require('../controllers/getUser');
 const isValid = require('../controllers/validate');
 
 module.exports = {
   createUsers,
   isValid,
   login,
+  getUser,
 };
