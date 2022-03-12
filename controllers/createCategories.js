@@ -15,6 +15,6 @@ module.exports = async (req, res) => {
 } catch (err) {
     res
       .status(500)
-      .json({ message: 'Erro ao salvar o usuário no banco', error: err.message });
+      .json({ message: err.message });
   }
 };

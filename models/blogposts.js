@@ -4,17 +4,16 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     userId: { type: DataTypes.INTEGER, foreignKey: true },
-    image: DataTypes.STRING,
-  });
+  }, { timestamps: false });
 
   BlogPosts.associate = (models) => {
     BlogPosts.belongsTo(models.User,
-      { foreignKey: 'user_id', as: 'users' });
+      { foreignKey: 'userId', as: 'users' });
   };
 
   BlogPosts.associate = (models) => {
     BlogPosts.hasMany(models.PostsCategories,
-      { foreignKey: 'post_id', as: 'postscategories' });
+      { foreignKey: 'postId', as: 'postscategories' });
   };
 
   return BlogPosts;

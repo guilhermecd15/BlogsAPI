@@ -1,17 +1,21 @@
+const isValidUser = require('../middlewares/validateUser');
+const isValidPost = require('../middlewares/validatePost');
 const createUsers = require('../controllers/createUser');
-const createCategories = require('../controllers/createCategories');
-const login = require('../controllers/login');
 const getUser = require('../controllers/getUser');
-const getCategories = require('../controllers/getCategories');
 const getUserById = require('../controllers/getUserById');
-const isValid = require('../controllers/validate');
+const login = require('../controllers/login');
+const createCategories = require('../controllers/createCategories');
+const getCategories = require('../controllers/getCategories');
+const createposts = require('../controllers/createPost');
 
 module.exports = {
   createUsers,
-  isValid,
+  isValidUser,
   login,
   getUser,
   getUserById,
   createCategories,
   getCategories,
+  createposts,
+  isValidPost,
 };
