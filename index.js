@@ -15,10 +15,11 @@ app.get('/', (request, response) => {
   response.send();
 });
 
-app.post('/user', routes.isValid, routes.createUsers);
-app.post('/login', routes.login);
 app.get('/user', validateJWT, routes.getUser);
 app.get('/user/:id', validateJWT, routes.getUserById);
+app.post('/user', routes.isValid, routes.createUsers);
+app.post('/login', routes.login);
+app.get('/categories', validateJWT, routes.getCategories);
 app.post('/categories', validateJWT, routes.createCategories);
 
 // token Hamilton
