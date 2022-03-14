@@ -12,6 +12,7 @@ const getCategories = require('../controllers/getCategories');
 const createposts = require('../controllers/createPost');
 const updatePost = require('../controllers/updatePost');
 const deletePost = require('../controllers/deletePost');
+const deleteUser = require('../controllers/deleteUser');
 
 module.exports = {
   createUsers,
@@ -28,4 +29,5 @@ module.exports = {
   updatePost,
   isValidPostUpdate,
   deletePost,
+  deleteUser,
 };
