@@ -1,33 +1,35 @@
 const isValidUser = require('../middlewares/validateUser');
 const isValidPost = require('../middlewares/validatePost');
 const isValidPostUpdate = require('../middlewares/validatePostUpdate');
-const createUsers = require('../controllers/createUser');
+const login = require('../controllers/login');
 const getUser = require('../controllers/getUser');
+const getUserById = require('../controllers/getUserById');
+const createUsers = require('../controllers/createUser');
+const deleteUser = require('../controllers/deleteUser');
 const getPosts = require('../controllers/getPosts');
 const getPostsById = require('../controllers/getPostsById');
-const getUserById = require('../controllers/getUserById');
-const login = require('../controllers/login');
-const createCategories = require('../controllers/createCategories');
-const getCategories = require('../controllers/getCategories');
+const getPostSearch = require('../controllers/getPostSearch.js');
 const createposts = require('../controllers/createPost');
 const updatePost = require('../controllers/updatePost');
 const deletePost = require('../controllers/deletePost');
-const deleteUser = require('../controllers/deleteUser');
+const getCategories = require('../controllers/getCategories');
+const createCategories = require('../controllers/createCategories');
 
 module.exports = {
-  createUsers,
   isValidUser,
+  isValidPost,
+  isValidPostUpdate,
   login,
   getUser,
   getUserById,
-  createCategories,
-  getCategories,
-  createposts,
-  isValidPost,
+  createUsers,
+  deleteUser,
   getPosts,
   getPostsById,
+  getPostSearch,
+  createposts,
   updatePost,
-  isValidPostUpdate,
   deletePost,
-  deleteUser,
+  getCategories,
+  createCategories,
 };

@@ -18,5 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'categoryId',
     });
   };
+
   return PostsCategories;
 };

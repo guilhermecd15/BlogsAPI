@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   try {
     const decoded = jwt.verify(req.headers.authorization, secret);
     const id = decoded.data.id.toString();
-    
+
     const post = await BlogPosts.findOne({
       where: { id: req.params.id },
     });

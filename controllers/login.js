@@ -21,18 +21,21 @@ const validateBody = (body) =>
 module.exports = async (req, res) => {
   try {
     const { error } = validateBody(req.body);
-    
+
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
+
     const { email, password } = req.body;
     const user = await Users.findOne({ where: { email } });
 
     if (!user || user.password !== password) {
       return res.status(400).json({ message: 'Invalid fields' });
     }
+
     const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
     const token = jwt.sign({ data: user }, secret, jwtConfig);
+    
     res.status(200).json({ token });
   } catch (err) {
     return res.status(500).json({ message: 'Erro interno', error: err.message });

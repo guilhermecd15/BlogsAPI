@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     const { id } = decoded.data;
 
     const post = await BlogPosts.create({ title, content, userId: id });
-    
+
     if (!post) throw Error;
 
     res.status(201).json(post);
