@@ -1,8 +1,8 @@
-const { User } = require('../models');
+const { Users } = require('../models');
 
 module.exports = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await Users.findAll();
 
     if (!users) throw Error;
 

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
-const { User } = require('../models');
+const { Users } = require('../models');
 
 const secret = 'seusecretdetoken';
 
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: error.details[0].message });
     }
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
+    const user = await Users.findOne({ where: { email } });
 
     if (!user || user.password !== password) {
       return res.status(400).json({ message: 'Invalid fields' });

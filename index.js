@@ -20,6 +20,7 @@ app.get('/user/:id', validateJWT, routes.getUserById);
 app.post('/user', routes.isValidUser, routes.createUsers);
 app.post('/login', routes.login);
 app.get('/categories', validateJWT, routes.getCategories);
+app.get('/post', validateJWT, routes.getPosts);
 app.post('/categories', validateJWT, routes.createCategories);
 app.post('/post', validateJWT, routes.isValidPost, routes.createposts);
 
