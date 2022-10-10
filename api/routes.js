@@ -1,6 +1,7 @@
 const isValidUser = require('../middlewares/validateUser');
 const isValidPost = require('../middlewares/validatePost');
 const isValidPostUpdate = require('../middlewares/validatePostUpdate');
+const isValidLogin = require('../middlewares/validateLogin');
 const login = require('../controllers/login');
 const getUser = require('../controllers/getUser');
 const getUserById = require('../controllers/getUserById');
@@ -19,6 +20,7 @@ module.exports = {
   isValidUser,
   isValidPost,
   isValidPostUpdate,
+  isValidLogin,
   login,
   getUser,
   getUserById,

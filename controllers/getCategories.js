@@ -1,8 +1,8 @@
-const { Categories } = require('../models');
+const getCategories = require('../services/getCategories');
 
 module.exports = async (req, res) => {
   try {
-    const categories = await Categories.findAll();
+    const categories = await getCategories();
 
     if (!categories) throw Error;
 

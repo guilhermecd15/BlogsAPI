@@ -1,9 +1,10 @@
-const { Users } = require('../models');
+const getUser = require('./getUser');
 
 module.exports = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await Users.findByPk(id);
+    
+    const user = await getUser(id);
 
     if (!user) return res.status(404).json({ message: 'User does not exist' });
 

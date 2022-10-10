@@ -1,23 +1,16 @@
-const jwt = require('jsonwebtoken');
-const { Users } = require('../models');
-
-const secret = 'seusecretdetoken';
+const createUser = require('../services/createUser');
 
 module.exports = async (req, res) => {
   try {
     const { displayName, email, password, image } = req.body;
-    const users = await Users.findAll();
 
-    const emailNotAvailable = users.some((u) => u.email === email);
-    if (emailNotAvailable) {
+    const token = createUser(displayName, email, password, image);
+
+    if (token === null) {
       return res.status(409).json({ message: 'User already registered' });
     }
 
-    const user = await Users.create({ displayName, email, password, image });
-    if (!user) throw Error;
-
-    const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
-    const token = jwt.sign({ data: user }, secret, jwtConfig);
+    if (!token) throw Error;
 
     res.status(201).json({ token });
   } catch (err) {

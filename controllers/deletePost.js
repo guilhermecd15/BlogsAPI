@@ -1,24 +1,17 @@
 const jwt = require('jsonwebtoken');
-const { BlogPosts } = require('../models');
+const deletePost = require('../services/deletePost');
 
 const secret = 'seusecretdetoken';
 
 module.exports = async (req, res) => {
   try {
     const decoded = jwt.verify(req.headers.authorization, secret);
-    const id = decoded.data.id.toString();
 
-    const post = await BlogPosts.findOne({
-      where: { id: req.params.id },
-    });
+    const post = deletePost(decoded, req.params.id);
 
-    if (!post) return res.status(404).json({ message: 'Post does not exist' });
+    if (post === null) return res.status(404).json({ message: 'Post does not exist' });
 
-    if (id !== req.params.id) return res.status(401).json({ message: 'Unauthorized user' });
-
-    await BlogPosts.destroy(
-      { where: { id: req.params.id } },
-    );
+    if (post === 'Unauthorized user') return res.status(401).json({ message: 'Unauthorized user' });
 
     res.status(204).json();
   } catch (err) {

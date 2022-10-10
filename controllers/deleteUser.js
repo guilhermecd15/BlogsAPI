@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { Users } = require('../models');
+const deleteUser = require('../services/deleteUser');
 
 const secret = 'seusecretdetoken';
 
@@ -8,9 +8,7 @@ module.exports = async (req, res) => {
     const decoded = jwt.verify(req.headers.authorization, secret);
     const { id } = decoded.data;
 
-    await Users.destroy(
-      { where: { id } },
-    );
+    await deleteUser(id);
 
     res.status(204).json();
   } catch (err) {

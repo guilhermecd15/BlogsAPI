@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { BlogPosts, Categories } = require('../models');
+const updatePost = require('../services/updatePost');
 
 const secret = 'seusecretdetoken';
 
@@ -14,15 +14,7 @@ module.exports = async (req, res) => {
 
     if (id !== req.params.id) return res.status(401).json({ message: 'Unauthorized user' });
 
-    await BlogPosts.update(
-      { title, content },
-      { where: { id: req.params.id } },
-    );
-
-    const postUpdate = await BlogPosts.findOne({
-      where: { id: req.params.id },
-      include: { model: Categories, as: 'categories', attributes: { exclude: ['postcategories'] } },
-    });
+    const postUpdate = updatePost(title, content, id);
 
     res.status(200).json(postUpdate);
   } catch (err) {

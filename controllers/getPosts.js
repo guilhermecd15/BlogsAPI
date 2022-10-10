@@ -1,13 +1,8 @@
-const { BlogPosts, Users, Categories } = require('../models');
+const getPosts = require('../services/getPosts');
 
 module.exports = async (req, res) => {
   try {
-    const posts = await BlogPosts.findAll({
-      include: [
-        { model: Categories, as: 'categories', attributes: { exclude: ['postcategories'] } },
-        { model: Users, as: 'user', attributes: { exclude: ['password'] } },
-      ],
-    });
+    const posts = getPosts();
     
     res.status(200).json(posts);
   } catch (err) {

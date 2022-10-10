@@ -1,4 +1,4 @@
-const { Categories } = require('../models');
+const createCategories = require('../services/createCategories');
 
 module.exports = async (req, res) => {
   try {
@@ -7,7 +7,8 @@ module.exports = async (req, res) => {
     if (!name) {
       return res.status(400).json({ message: '"name" is required' });
     }
-    const categories = await Categories.create({ name });
+
+    const categories = await createCategories(name);
 
     if (!categories) throw Error;
 
